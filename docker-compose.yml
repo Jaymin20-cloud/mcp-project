@@ -1,0 +1,51 @@
+services:
+  # ── MCP Server ─────────────────────────────────────────────────────────────
+  mcp-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mcp-server
+    env_file:
+      - .env
+    volumes:
+      - ./data/index:/app/data/index
+      - ./config:/app/config:ro
+    stdin_open: true
+    tty: true
+    command: ["stdio"]
+    restart: unless-stopped
+
+  # ── MCP Client (interactive) ───────────────────────────────────────────────
+  mcp-client:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mcp-client
+    env_file:
+      - .env
+    volumes:
+      - ./data/index:/app/data/index:ro
+      - ./config:/app/config:ro
+      - ./traces:/app/traces
+    entrypoint: ["python", "-m", "client.main"]
+    command: ["--interactive"]
+    depends_on:
+      - mcp-server
+    profiles:
+      - client
+
+  # ── Indexer (one-shot) ─────────────────────────────────────────────────────
+  indexer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mcp-indexer
+    env_file:
+      - .env
+    volumes:
+      - ./data/index:/app/data/index
+      - .:/app/source:ro
+    entrypoint: ["python", "-m", "scripts.index_codebase"]
+    command: ["/app/source"]
+    profiles:
+      - index

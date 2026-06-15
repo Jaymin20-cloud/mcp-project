@@ -1,0 +1,40 @@
+# Global application settings
+app:
+  name: mcp-project
+  version: "0.1.0"
+  log_level: INFO
+
+rag:
+  supported_extensions:
+    - .py
+    - .md
+    - .txt
+    - .json
+    - .yaml
+    - .yml
+    - .toml
+    - .rst
+    - .js
+    - .ts
+    - .tsx
+    - .jsx
+    - .go
+    - .rs
+  exclude_dirs:
+    - .git
+    - node_modules
+    - __pycache__
+    - .venv
+    - venv
+    - dist
+    - build
+    - .pytest_cache
+    - data/index
+
+github:
+  default_per_page: 30
+  max_per_page: 100
+
+client:
+  max_tool_iterations: 10
+  trace_format: json

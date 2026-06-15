@@ -1,0 +1,62 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mcp-project"
+version = "0.1.0"
+description = "MCP server with FAISS RAG search and GitHub tooling, plus multi-server MCP client with Claude orchestration"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{ name = "MCP Project" }]
+dependencies = [
+    "mcp>=1.27,<2",
+    "anthropic>=0.40.0",
+    "faiss-cpu>=1.9.0",
+    "sentence-transformers>=3.3.0",
+    "PyGithub>=2.5.0",
+    "pydantic>=2.10.0",
+    "pydantic-settings>=2.6.0",
+    "python-dotenv>=1.0.0",
+    "httpx>=0.28.0",
+    "pyyaml>=6.0.0",
+    "rich>=13.9.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3.0",
+    "pytest-asyncio>=0.24.0",
+    "pytest-cov>=6.0.0",
+    "ruff>=0.8.0",
+    "mypy>=1.13.0",
+]
+
+[project.scripts]
+mcp-server = "server.main:main"
+mcp-client = "client.main:main"
+mcp-index = "scripts.index_codebase:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/server", "src/client", "src/shared", "src/scripts"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"src/scripts" = "scripts"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = false
+ignore_missing_imports = true

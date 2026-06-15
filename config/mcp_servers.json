@@ -1,0 +1,12 @@
+{
+  "servers": [
+    {
+      "name": "codebase-rag",
+      "description": "FAISS-backed codebase and documentation RAG search",
+      "transport": "stdio",
+      "command": "python",
+      "args": ["-m", "server.main"],
+      "env": {}
+    }
+  ]
+}
