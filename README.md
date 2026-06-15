@@ -1,5 +1,7 @@
 # MCP Project
 
+[![CI](https://github.com/Jaymin20-cloud/mcp-project/actions/workflows/ci.yml/badge.svg)](https://github.com/Jaymin20-cloud/mcp-project/actions/workflows/ci.yml)
+
 A Model Context Protocol (MCP) system featuring FAISS-backed codebase RAG search, GitHub tooling, and a multi-server MCP client that orchestrates Claude tool-use with full call tracing. Containerized with Docker and CI/CD via GitHub Actions.
 
 ## Features
