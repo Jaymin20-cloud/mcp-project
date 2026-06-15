@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import numpy as np
-from sentence_transformers import SentenceTransformer
 
 from shared.logging import get_logger
 
@@ -14,6 +13,14 @@ class Embedder:
     """Wraps sentence-transformers for consistent embedding generation."""
 
     def __init__(self, model_name: str = "all-MiniLM-L6-v2") -> None:
+        try:
+            from sentence_transformers import SentenceTransformer
+        except ImportError as exc:
+            raise ImportError(
+                "sentence-transformers is required for RAG. "
+                'Install with: pip install "mcp-project[rag]"'
+            ) from exc
+
         logger.info("Loading embedding model: %s", model_name)
         self.model = SentenceTransformer(model_name)
         self.dimension = self.model.get_sentence_embedding_dimension()

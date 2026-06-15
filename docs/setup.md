@@ -16,7 +16,7 @@
 cd "MCP Project"
 python -m venv .venv
 source .venv/bin/activate
-pip install -e ".[dev]"
+pip install -e ".[rag,dev]"
 ```
 
 ### 2. Configure environment

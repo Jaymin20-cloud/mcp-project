@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
+import sys
 import tempfile
 from pathlib import Path
+from types import ModuleType
 
 import numpy as np
 import pytest
@@ -25,10 +27,9 @@ def mock_sentence_transformer(monkeypatch):
                 vectors.append(rng.rand(384).astype(np.float32))
             return np.array(vectors)
 
-    monkeypatch.setattr(
-        "server.rag.embedder.SentenceTransformer",
-        lambda model_name: FakeModel(),
-    )
+    fake_module = ModuleType("sentence_transformers")
+    fake_module.SentenceTransformer = lambda model_name: FakeModel()
+    monkeypatch.setitem(sys.modules, "sentence_transformers", fake_module)
 
 
 @pytest.fixture

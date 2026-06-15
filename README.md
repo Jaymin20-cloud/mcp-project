@@ -22,7 +22,7 @@ A Model Context Protocol (MCP) system featuring FAISS-backed codebase RAG search
 
 ```bash
 # Install
-pip install -e ".[dev]"
+pip install -e ".[rag,dev]"
 
 # Configure
 cp .env.example .env   # Add your API keys
