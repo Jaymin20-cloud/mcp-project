@@ -9,7 +9,7 @@ description = "MCP server with FAISS RAG search and GitHub tooling, plus multi-s
 readme = "README.md"
 requires-python = ">=3.11"
 license = "MIT"
-authors = [{ name = "MCP Project" }]
+authors = [{ name = "Jaymin Shah", email = "jayminshah@mac.dhcp.asu.edu" }]
 dependencies = [
     "mcp>=1.27,<2",
     "anthropic>=0.40.0",
