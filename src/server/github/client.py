@@ -148,8 +148,7 @@ class GitHubClient:
             if not isinstance(contents, list):
                 return [{"name": contents.name, "path": contents.path, "type": contents.type}]
             return [
-                {"name": c.name, "path": c.path, "type": c.type, "size": c.size}
-                for c in contents
+                {"name": c.name, "path": c.path, "type": c.type, "size": c.size} for c in contents
             ]
         except GithubException as exc:
             logger.error("Failed to list directory %s/%s/%s: %s", owner, repo, path, exc)

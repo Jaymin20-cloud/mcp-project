@@ -41,9 +41,6 @@ mcp-index = "scripts.index_codebase:main"
 [tool.hatch.build.targets.wheel]
 packages = ["src/server", "src/client", "src/shared", "src/scripts"]
 
-[tool.hatch.build.targets.wheel.force-include]
-"src/scripts" = "scripts"
-
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
 testpaths = ["tests"]

@@ -33,13 +33,13 @@ def mock_sentence_transformer(monkeypatch):
 
 @pytest.fixture
 def temp_dir():
-  with tempfile.TemporaryDirectory() as tmp:
-    yield Path(tmp)
+    with tempfile.TemporaryDirectory() as tmp:
+        yield Path(tmp)
 
 
 @pytest.fixture
 def sample_python_file(temp_dir: Path) -> Path:
-  content = '''"""Sample module for testing."""
+    content = '''"""Sample module for testing."""
 
 def hello(name: str) -> str:
     """Return a greeting."""
@@ -52,14 +52,14 @@ class Greeter:
     def greet(self, name: str) -> str:
         return f"{self.prefix}, {name}!"
 '''
-  file_path = temp_dir / "sample.py"
-  file_path.write_text(content)
-  return file_path
+    file_path = temp_dir / "sample.py"
+    file_path.write_text(content)
+    return file_path
 
 
 @pytest.fixture
 def sample_markdown_file(temp_dir: Path) -> Path:
-  content = """# Test Documentation
+    content = """# Test Documentation
 
 This is a test document for RAG indexing.
 
@@ -69,6 +69,6 @@ This is a test document for RAG indexing.
 - FAISS vector store
 - GitHub integration
 """
-  file_path = temp_dir / "README.md"
-  file_path.write_text(content)
-  return file_path
+    file_path = temp_dir / "README.md"
+    file_path.write_text(content)
+    return file_path

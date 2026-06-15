@@ -82,9 +82,7 @@ class ClaudeAgent:
                     if block.type == "tool_use":
                         logger.info("Calling tool: %s", block.name)
                         try:
-                            result_text = await self.orchestrator.call_tool(
-                                block.name, block.input
-                            )
+                            result_text = await self.orchestrator.call_tool(block.name, block.input)
                             tool_results.append(
                                 {
                                     "type": "tool_result",
